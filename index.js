@@ -23,10 +23,10 @@ app.get('/get-all-movies',(req,res)=>{
     });
 });
 
-app.get('/get-movies',(req,res)=>{
-    Movie.find()
-    .then((movies)=>{
-        res.json(movies);
+app.get('/getbyid/:id',(req,res)=>{
+    Movie.findById(req.params.id)
+    .then((detail)=>{
+        res.json(detail);
     },(err)=>{
         console.log(err);
     });

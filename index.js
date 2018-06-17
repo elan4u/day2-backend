@@ -23,6 +23,15 @@ app.get('/get-all-movies',(req,res)=>{
     });
 });
 
+app.get('/get-movies',(req,res)=>{
+    Movie.find()
+    .then((movies)=>{
+        res.json(movies);
+    },(err)=>{
+        console.log(err);
+    });
+});
+
 app.listen(app.get('port'), () => {
 	console.log('Server Started at ' + app.get("port"));
 });

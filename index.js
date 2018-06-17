@@ -1,7 +1,10 @@
 const express = require('express');
 const app = express();
+app.set('port',process.env.PORT || 3000);
 app.get('/',(req,res)=>{
-    console.log("Home is Called.");
-    res.send("Home is called");
+    console.log("backend is Called.");
+    res.send("backend is called");
 })
-  app.listen(3000);
+app.listen(app.get('port'), () => {
+	console.log('Server Started at ' + app.get("port"));
+});

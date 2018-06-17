@@ -8,11 +8,21 @@ mongoose.Promise = global.Promise;
 mongoose.connect(process.env.db);
 require('dotenv').config();
 app.set('port',process.env.PORT || 3000);
-
-app.get('/',((req,res)=>{
+const { Movie } = require ('./models/movie');
+app.get('/',(req,res)=>{
     console.log("backend is Called.");
     res.json({message:"backend for App is requested"});
-}));
+});
+
+app.get('/get-all-movies',(req,res)=>{
+    Movie.find()
+    .then((movies)=>{
+        res.json(movies);
+    },(err)=>{
+        console.log(err);
+    });
+});
+
 app.listen(app.get('port'), () => {
 	console.log('Server Started at ' + app.get("port"));
 });
